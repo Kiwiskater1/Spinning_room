@@ -1,0 +1,111 @@
+/* ========================================= MAIN HEADING ========================================= */
+/* Styles the main heading */
+h1 {
+  /* Makes the heading black */
+  color: rgb(0, 0, 0);
+  /* Centers the heading */
+  text-align: center;
+  /* Makes the heading very large */
+  font-size: 100px;
+  /* Makes the heading italic */
+  font-style: italic;
+  /* Makes the heading bold */
+  font-weight: bold;
+}
+
+/* ========================================= PAGE STYLING ========================================= */
+/* Selects the entire webpage body */
+body {
+  /* Sets a light blue fallback background color */
+  background-color: rgb(131, 193, 255);
+  /* Displays the background image */
+  background-image: url("pan.jpg");
+  /* Makes the background image smaller */
+  background-size: 50%;
+  /* Prevents the background image from repeating */
+  background-repeat: no-repeat;
+  /* Positions the background image */
+  background-position: 50% 10%;
+  /* Keeps the background fixed while scrolling */
+  background-attachment: fixed;
+}
+
+/* ========================================= PARAGRAPHS ========================================= */
+/* Styles paragraphs */
+p {
+  /* Sets the font */
+  font-family: Verdana, sans-serif;
+  /* Makes the text black */
+  color: rgb(0, 0, 0);
+  /* Sets the text size */
+  font-size: 20px;
+}
+
+/* ========================================= SPINNING EGG ========================================= */
+/* Styles the spinning egg image */
+.spinning-egg {
+  /* Makes the image a block element */
+  display: block;
+  /* Sets the image width */
+  width: 800px;
+  /* Centers the image */
+  margin: 50px auto;
+  /* Spins the egg continuously */
+  animation: spin 0.0001s linear infinite;
+}
+
+/* ========================================= WHEEZER ========================================= */
+/* Styles the Wheezer image */
+.wheezer {
+  /* Makes the image a block element */
+  display: block;
+  /* Sets the image width */
+  width: 800px;
+  /* Centers the image */
+  margin: 50px auto;
+  /* Spins Wheezer continuously */
+  animation: spin 2s linear infinite;
+}
+
+/* ========================================= SPIN ANIMATION ========================================= */
+/* Creates the spinning animation */
+@keyframes spin {
+
+  /* Starting position */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* Ending position */
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ========================================= MOVING IMAGE CONTAINER ========================================= */
+/* Container for moving images */
+.container {
+  /* Allows images inside to be positioned */
+  position: relative;
+  /* Makes the container the full screen width */
+  width: 100vw;
+  /* Makes the container the full screen height */
+  height: 100vh;
+  /* Hides anything outside the container */
+  overflow: hidden;
+}
+
+/* ========================================= MOVING IMAGE ========================================= */
+/* Styles the moving image */
+#moving-image {
+  /* Positions the image relative to its container */
+  position: absolute;
+  /* Sets the image size */
+  width: 100px;
+  height: 100px;
+  /* Starts the image in the top-left corner */
+  top: 0;
+  left: 0;
+  /* Smoothly animates movement */
+  transition: top 1s ease-in-out, left 1s ease-in-out;
+}
