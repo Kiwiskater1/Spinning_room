@@ -133,10 +133,17 @@
         const homeStage = document.querySelector(".home-stage");
         let previousPointer = null;
         let lastEscapeTime = 0;
+        let isApologizing = false;
+        let dodgeTimerStarted = false;
 
 
         // Listen for the mouse moving anywhere on the webpage.
         document.addEventListener("mousemove", (event) => {
+
+            // Stop checking cursor movement once the button has apologized.
+            if (isApologizing) {
+                return;
+            }
 
             // Measure how quickly the pointer moved since the last event.
             const currentTime = performance.now();
@@ -174,6 +181,16 @@
             // Ignore slow movement, but move when the pointer enters quickly.
             if (isNearButton && isMovingFast && canEscapeAgain) {
                 lastEscapeTime = currentTime;
+
+                // Start the apology timer after the first successful dodge.
+                if (!dodgeTimerStarted) {
+                    dodgeTimerStarted = true;
+                    setTimeout(() => {
+                        isApologizing = true;
+                        button.textContent = "Sorry for moving!";
+                        button.setAttribute("aria-label", "Sorry for moving");
+                    }, 60000);
+                }
 
                 // Calculate the furthest position inside the image stage.
                 const minX = button.offsetWidth / 2;
