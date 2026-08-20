@@ -131,32 +131,47 @@
         // Find the button using its ID and store it in a variable.
         const button = document.getElementById("runawayButton");
         const homeStage = document.querySelector(".home-stage");
+        let previousPointer = null;
+        let lastEscapeTime = 0;
 
 
         // Listen for the mouse moving anywhere on the webpage.
         document.addEventListener("mousemove", (event) => {
 
+            // Measure how quickly the pointer moved since the last event.
+            const currentTime = performance.now();
+            const elapsed = previousPointer
+                ? Math.max(1, currentTime - previousPointer.time)
+                : 0;
+            const pointerDistance = previousPointer
+                ? Math.hypot(
+                    event.clientX - previousPointer.x,
+                    event.clientY - previousPointer.y
+                )
+                : 0;
+            const pointerSpeed = elapsed ? pointerDistance / elapsed : 0;
+
+            previousPointer = {
+                x: event.clientX,
+                y: event.clientY,
+                time: currentTime
+            };
+
             // Get the button's position and size on the screen.
             const rect = button.getBoundingClientRect();
 
-            // Calculate the horizontal centre of the button.
-            const buttonX = rect.left + rect.width / 2;
+            // Expand the button's hit area so fast approaches from the sides are noticed.
+            const dangerPadding = 110;
+            const isNearButton = event.clientX >= rect.left - dangerPadding &&
+                event.clientX <= rect.right + dangerPadding &&
+                event.clientY >= rect.top - dangerPadding &&
+                event.clientY <= rect.bottom + dangerPadding;
+            const isMovingFast = pointerSpeed >= 0.8;
+            const canEscapeAgain = currentTime - lastEscapeTime >= 250;
 
-            // Calculate the vertical centre of the button.
-            const buttonY = rect.top + rect.height / 2;
-
-
-            // Calculate the distance between the mouse
-            // and the centre of the button.
-            const distance = Math.sqrt(
-                Math.pow(event.clientX - buttonX, 2) +
-                Math.pow(event.clientY - buttonY, 2)
-            );
-
-
-            // If the mouse gets within 50 pixels of the button,
-            // make the button run away.
-            if (distance < 50) {
+            // Ignore slow movement, but move when the pointer enters quickly.
+            if (isNearButton && isMovingFast && canEscapeAgain) {
+                lastEscapeTime = currentTime;
 
                 // Calculate the furthest position inside the image stage.
                 const minX = button.offsetWidth / 2;
