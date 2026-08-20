@@ -92,13 +92,18 @@ const container = document.querySelector(".container");
    LOCKED NAVIGATION
    ========================================= */
 
+// Find the shared navigation bar, if the current page contains one.
 const navigation = document.querySelector(".site-nav");
 
 if (navigation) {
+    // Read the unlock state created by the index page's button.
     const isUnlocked = sessionStorage.getItem("navUnlocked") === "true";
+
+    // Collect the links and status label that need to reflect that state.
     const navigationLinks = navigation.querySelectorAll("a");
     const status = navigation.querySelector(".nav-status");
 
+    // Apply matching visual states to the navigation toolbar.
     navigation.classList.toggle("is-locked", !isUnlocked);
     navigation.classList.toggle("is-unlocked", isUnlocked);
 

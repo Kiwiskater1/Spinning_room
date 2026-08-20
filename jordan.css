@@ -1,22 +1,18 @@
-/* =========================================
-   MAIN HEADING
-   ========================================= */
+/* Applies predictable sizing to every element and its pseudo-elements. */
+* {
+  box-sizing: border-box;
+}
 
-/* Styles the main heading */
+/* Styles the main heading consistently across every page. */
 h1 {
-  /* Makes the heading black */
-  color: rgb(0, 0, 0);
-
-  /* Centers the heading */
+  margin: 34px auto 14px;
+  padding: 0 20px;
+  color: rgb(25, 38, 58);
   text-align: center;
-
-  /* Makes the heading very large */
-  font-size: 100px;
-
-  /* Makes the heading italic */
+  font-family: Georgia, serif;
+  font-size: 56px;
+  line-height: 1.05;
   font-style: italic;
-
-  /* Makes the heading bold */
   font-weight: bold;
 }
 
@@ -27,11 +23,12 @@ h1 {
 
 /* Selects the entire webpage body */
 body {
-  /* Keeps the site content inside a clean outer frame */
-  box-sizing: border-box;
   min-height: 100vh;
   margin: 0;
+  padding: 0 18px 28px;
   border: 6px solid rgb(25, 38, 58);
+  color: rgb(25, 38, 58);
+  font-family: Verdana, sans-serif;
 
   /* Sets a light blue fallback background colour */
   background-color: rgb(131, 193, 255);
@@ -39,8 +36,7 @@ body {
   /* Displays the background image */
   background-image: url("pan.jpg");
 
-  /* Makes the background image smaller */
-  background-size: 50%;
+  background-size: cover;
 
   /* Prevents the background image from repeating */
   background-repeat: no-repeat;
@@ -58,24 +54,27 @@ body {
    ========================================= */
 
 .site-nav {
+  /* Keeps the navigation aligned in one bordered toolbar. */
   display: flex;
   align-items: center;
   gap: 24px;
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 18px auto 0;
   padding: 12px 18px;
   border: 2px solid rgb(25, 38, 58);
-  background-color: rgba(255, 255, 255, 0.9);
-  font-family: Verdana, sans-serif;
+  background-color: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 4px 0 rgba(25, 38, 58, 0.12);
 }
 
 .nav-title {
+  /* Keeps the site name visible while the links wrap. */
   color: rgb(25, 38, 58);
   font-weight: bold;
   white-space: nowrap;
 }
 
 .nav-links {
+  /* Centers the page links and allows them to wrap on narrow screens. */
   display: flex;
   flex: 1;
   justify-content: center;
@@ -84,25 +83,31 @@ body {
 }
 
 .nav-links a {
+  /* Gives every destination the same clickable bordered treatment. */
+  display: inline-block;
   padding: 6px 10px;
   border: 1px solid rgb(25, 38, 58);
   color: rgb(25, 38, 58);
   text-decoration: none;
   font-size: 14px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-links a:hover,
 .nav-links a:focus-visible {
+  /* Shows keyboard and pointer focus clearly. */
   background-color: rgb(255, 105, 180);
   color: white;
 }
 
 .site-nav.is-locked .nav-links a {
+  /* Makes unavailable links look inactive before the unlock action. */
   opacity: 0.5;
   cursor: not-allowed;
 }
 
 .nav-status {
+  /* Reserves space for the lock state so the nav does not shift. */
   min-width: 54px;
   color: rgb(120, 35, 35);
   font-size: 13px;
@@ -111,20 +116,49 @@ body {
 }
 
 .site-nav.is-unlocked .nav-status {
+  /* Uses green to confirm that navigation is available. */
   color: rgb(25, 100, 45);
 }
 
 .content-frame {
-  max-width: 1100px;
+  /* Provides a readable, centered surface for longer page content. */
+  width: min(1100px, 100%);
   margin: 30px auto;
-  padding: 24px;
+  padding: 20px;
   border: 3px solid rgb(25, 38, 58);
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+.page-image {
+  /* Frames the uploaded Lamborghini image without stretching it. */
+  width: min(760px, 100%);
+  margin: 0 auto 30px;
+  padding: 10px;
+  border: 3px solid rgb(25, 38, 58);
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+}
+
+.page-image img {
+  /* Keeps the image responsive while preserving its natural ratio. */
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 2px solid rgb(25, 38, 58);
+}
+
+.page-image figcaption {
+  /* Styles the short description beneath each feature image. */
+  padding: 10px 4px 2px;
+  color: rgb(25, 38, 58);
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
+}
+
 section {
-  margin: 18px 0;
-  padding: 18px;
+  /* Separates each topic so long pages are easy to scan. */
+  margin: 16px 0;
+  padding: 18px 20px;
   border: 2px solid rgba(25, 38, 58, 0.55);
   background-color: rgba(255, 255, 255, 0.55);
 }
@@ -143,7 +177,30 @@ p {
   color: rgb(0, 0, 0);
 
   /* Sets the text size */
-  font-size: 20px;
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+h2,
+h3 {
+  /* Gives content headings a stronger visual hierarchy than body text. */
+  margin-top: 0;
+  color: rgb(25, 38, 58);
+  font-family: Georgia, serif;
+}
+
+ul {
+  /* Keeps list text aligned and comfortably spaced. */
+  padding-left: 22px;
+  line-height: 1.8;
+}
+
+footer {
+  /* Aligns footer text with the main content width. */
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 
@@ -157,7 +214,7 @@ p {
   display: block;
 
   /* Sets the image width */
-  width: 800px;
+  width: min(800px, 100%);
 
   /* Adds space around the image and centers it */
   margin: 50px auto;
@@ -189,7 +246,7 @@ p {
   top: 0;
   left: 0;
 
-  /* Makes the background transparent */
+  /* Keeps the image background transparent and adds the shared border. */
   background-color: transparent;
   border: 4px solid rgb(25, 38, 58);
 
@@ -208,7 +265,7 @@ p {
   display: block;
 
   /* Sets the image width */
-  width: 800px;
+  width: min(800px, 100%);
 
   /* Adds space around the image and centers it */
   margin: 50px auto;
@@ -248,10 +305,10 @@ p {
   position: relative;
 
   /* Makes the container the full width of the screen */
-  width: 100vw;
+  width: 100%;
 
   /* Makes the container the full height of the screen */
-  height: 100vh;
+  height: min(70vh, 620px);
 
   /* Hides anything that moves outside the container */
   overflow: hidden;
@@ -317,7 +374,7 @@ p {
   color: white;
 
   /* Removes the browser's default button border */
-  border: none;
+  border: 2px solid rgb(25, 38, 58);
 
   /* Rounds the corners of the button */
   border-radius: 15px;
@@ -342,27 +399,45 @@ p {
   background-color: red;
 }
 
-/* =========================================
-   LamborghiniE
-   ========================================= */
-
-
-
-
-/* =========================================
-   SPIN ANIMATION
-   ========================================= */
-
-/* Creates the animation used to spin the images */
-@keyframes spin {
-
-  /* The starting position of the animation */
-  from {
-    transform: rotate(0deg);
+@media (max-width: 700px) {
+  /* Reorganizes the layout for phones and other narrow screens. */
+  body {
+    padding: 0 10px 20px;
+    border-width: 4px;
   }
 
-  /* The ending position of the animation */
-  to {
-    transform: rotate(360deg);
+  h1 {
+    margin-top: 26px;
+    font-size: 40px;
+  }
+
+  .site-nav {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .nav-title,
+  .nav-status {
+    text-align: center;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .content-frame {
+    margin-top: 22px;
+    padding: 12px;
+  }
+
+  section {
+    padding: 14px;
+  }
+
+  .lamborghiniE {
+    width: min(400px, 85vw);
+    height: auto;
   }
 }
