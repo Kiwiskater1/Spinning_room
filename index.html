@@ -161,12 +161,14 @@
             const rect = button.getBoundingClientRect();
 
             // Expand the button's hit area so fast approaches from the sides are noticed.
-            const dangerPadding = 110;
+            // Detect approaches well before the pointer reaches the button's sides.
+            const dangerPadding = 180;
             const isNearButton = event.clientX >= rect.left - dangerPadding &&
                 event.clientX <= rect.right + dangerPadding &&
                 event.clientY >= rect.top - dangerPadding &&
                 event.clientY <= rect.bottom + dangerPadding;
-            const isMovingFast = pointerSpeed >= 0.8;
+            // Keep the button still below 30 pixels per second.
+            const isMovingFast = pointerSpeed >= 0.03;
             const canEscapeAgain = currentTime - lastEscapeTime >= 250;
 
             // Ignore slow movement, but move when the pointer enters quickly.
