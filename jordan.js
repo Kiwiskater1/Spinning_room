@@ -88,6 +88,36 @@ const image = document.querySelector(".lamborghiniE");
 const container = document.querySelector(".container");
 
 
+/* =========================================
+   LOCKED NAVIGATION
+   ========================================= */
+
+const navigation = document.querySelector(".site-nav");
+
+if (navigation) {
+    const isUnlocked = sessionStorage.getItem("navUnlocked") === "true";
+    const navigationLinks = navigation.querySelectorAll("a");
+    const status = navigation.querySelector(".nav-status");
+
+    navigation.classList.toggle("is-locked", !isUnlocked);
+    navigation.classList.toggle("is-unlocked", isUnlocked);
+
+    if (status) {
+        status.textContent = isUnlocked ? "Unlocked" : "Locked";
+    }
+
+    navigationLinks.forEach((link) => {
+        link.setAttribute("aria-disabled", String(!isUnlocked));
+
+        if (!isUnlocked) {
+            link.addEventListener("click", (event) => {
+                event.preventDefault();
+            });
+        }
+    });
+}
+
+
 // Only run the LamborghiniE code if both the image
 // and its container were found.
 if (image && container) {

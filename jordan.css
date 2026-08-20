@@ -27,6 +27,12 @@ h1 {
 
 /* Selects the entire webpage body */
 body {
+  /* Keeps the site content inside a clean outer frame */
+  box-sizing: border-box;
+  min-height: 100vh;
+  margin: 0;
+  border: 6px solid rgb(25, 38, 58);
+
   /* Sets a light blue fallback background colour */
   background-color: rgb(131, 193, 255);
 
@@ -44,6 +50,83 @@ body {
 
   /* Keeps the background fixed while scrolling */
   background-attachment: fixed;
+}
+
+
+/* =========================================
+   SITE NAVIGATION
+   ========================================= */
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 18px auto 0;
+  padding: 12px 18px;
+  border: 2px solid rgb(25, 38, 58);
+  background-color: rgba(255, 255, 255, 0.9);
+  font-family: Verdana, sans-serif;
+}
+
+.nav-title {
+  color: rgb(25, 38, 58);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  padding: 6px 10px;
+  border: 1px solid rgb(25, 38, 58);
+  color: rgb(25, 38, 58);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+  background-color: rgb(255, 105, 180);
+  color: white;
+}
+
+.site-nav.is-locked .nav-links a {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-status {
+  min-width: 54px;
+  color: rgb(120, 35, 35);
+  font-size: 13px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.site-nav.is-unlocked .nav-status {
+  color: rgb(25, 100, 45);
+}
+
+.content-frame {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 24px;
+  border: 3px solid rgb(25, 38, 58);
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+section {
+  margin: 18px 0;
+  padding: 18px;
+  border: 2px solid rgba(25, 38, 58, 0.55);
+  background-color: rgba(255, 255, 255, 0.55);
 }
 
 
@@ -79,6 +162,9 @@ p {
   /* Adds space around the image and centers it */
   margin: 50px auto;
 
+  /* Gives the image a consistent frame even when its asset is unavailable */
+  border: 4px solid rgb(25, 38, 58);
+
   /* Makes the egg spin continuously */
   animation: spin 0.0001s linear infinite;
 }
@@ -105,6 +191,7 @@ p {
 
   /* Makes the background transparent */
   background-color: transparent;
+  border: 4px solid rgb(25, 38, 58);
 
   /* Makes LamborghiniE spin continuously */
   animation: spin 2s linear infinite;
@@ -125,6 +212,7 @@ p {
 
   /* Adds space around the image and centers it */
   margin: 50px auto;
+  border: 4px solid rgb(25, 38, 58);
 
   /* Makes Wheezer spin continuously */
   animation: spin 2s linear infinite;
