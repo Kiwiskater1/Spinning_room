@@ -27,6 +27,7 @@ body {
   margin: 0;
   padding: 0 18px 28px;
   border: 6px solid rgb(25, 38, 58);
+  border-radius: 22px;
   color: rgb(25, 38, 58);
   font-family: Verdana, sans-serif;
 
@@ -62,6 +63,7 @@ body {
   margin: 18px auto 0;
   padding: 12px 18px;
   border: 2px solid rgb(25, 38, 58);
+  border-radius: 16px;
   background-color: rgba(255, 255, 255, 0.94);
   box-shadow: 0 4px 0 rgba(25, 38, 58, 0.12);
 }
@@ -87,6 +89,7 @@ body {
   display: inline-block;
   padding: 6px 10px;
   border: 1px solid rgb(25, 38, 58);
+  border-radius: 10px;
   color: rgb(25, 38, 58);
   text-decoration: none;
   font-size: 14px;
@@ -126,6 +129,7 @@ body {
   margin: 30px auto;
   padding: 20px;
   border: 3px solid rgb(25, 38, 58);
+  border-radius: 18px;
   background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -135,6 +139,7 @@ body {
   margin: 0 auto 30px;
   padding: 10px;
   border: 3px solid rgb(25, 38, 58);
+  border-radius: 18px;
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
 }
@@ -145,6 +150,7 @@ body {
   width: 100%;
   height: auto;
   border: 2px solid rgb(25, 38, 58);
+  border-radius: 12px;
 }
 
 .page-image figcaption {
@@ -160,6 +166,7 @@ section {
   margin: 16px 0;
   padding: 18px 20px;
   border: 2px solid rgba(25, 38, 58, 0.55);
+  border-radius: 14px;
   background-color: rgba(255, 255, 255, 0.55);
 }
 
@@ -221,6 +228,7 @@ footer {
 
   /* Gives the image a consistent frame even when its asset is unavailable */
   border: 4px solid rgb(25, 38, 58);
+  border-radius: 18px;
 
   /* Makes the egg spin continuously */
   animation: spin 0.0001s linear infinite;
@@ -236,19 +244,22 @@ footer {
   /* Positions the image relative to its container */
   position: absolute;
 
-  /* Sets the image width */
-  width: 400px;
+  /* Makes the car larger while keeping it responsive on small screens. */
+  width: min(600px, 80vw);
 
-  /* Sets the image height */
-  height: 250px;
+  /* Keeps the enlarged car's proportions consistent. */
+  height: 350px;
 
-  /* Starts the image in the top-left corner */
-  top: 0;
-  left: 0;
+  /* Places the car in the center of the moving area at startup. */
+  top: 50%;
+  left: 50%;
+  margin-top: -175px;
+  margin-left: -300px;
 
   /* Keeps the image background transparent and adds the shared border. */
   background-color: transparent;
   border: 4px solid rgb(25, 38, 58);
+  border-radius: 18px;
 
   /* Makes LamborghiniE spin continuously */
   animation: spin 2s linear infinite;
@@ -270,6 +281,7 @@ footer {
   /* Adds space around the image and centers it */
   margin: 50px auto;
   border: 4px solid rgb(25, 38, 58);
+  border-radius: 18px;
 
   /* Makes Wheezer spin continuously */
   animation: spin 2s linear infinite;
@@ -309,6 +321,7 @@ footer {
 
   /* Makes the container the full height of the screen */
   height: min(70vh, 620px);
+  border-radius: 18px;
 
   /* Hides anything that moves outside the container */
   overflow: hidden;
@@ -438,6 +451,8 @@ footer {
 
   .lamborghiniE {
     width: min(400px, 85vw);
-    height: auto;
+    height: min(250px, 50vw);
+    margin-top: calc(-1 * min(250px, 50vw) / 2);
+    margin-left: calc(-1 * min(400px, 85vw) / 2);
   }
 }
