@@ -1,111 +1,280 @@
-/* ========================================= MAIN HEADING ========================================= */
+/* =========================================
+   MAIN HEADING
+   ========================================= */
+
 /* Styles the main heading */
 h1 {
   /* Makes the heading black */
   color: rgb(0, 0, 0);
+
   /* Centers the heading */
   text-align: center;
+
   /* Makes the heading very large */
   font-size: 100px;
+
   /* Makes the heading italic */
   font-style: italic;
+
   /* Makes the heading bold */
   font-weight: bold;
 }
 
-/* ========================================= PAGE STYLING ========================================= */
+
+/* =========================================
+   PAGE STYLING
+   ========================================= */
+
 /* Selects the entire webpage body */
 body {
-  /* Sets a light blue fallback background color */
+  /* Sets a light blue fallback background colour */
   background-color: rgb(131, 193, 255);
+
   /* Displays the background image */
   background-image: url("pan.jpg");
+
   /* Makes the background image smaller */
   background-size: 50%;
+
   /* Prevents the background image from repeating */
   background-repeat: no-repeat;
+
   /* Positions the background image */
   background-position: 50% 10%;
+
   /* Keeps the background fixed while scrolling */
   background-attachment: fixed;
 }
 
-/* ========================================= PARAGRAPHS ========================================= */
-/* Styles paragraphs */
+
+/* =========================================
+   PARAGRAPHS
+   ========================================= */
+
+/* Styles all paragraph elements */
 p {
-  /* Sets the font */
+  /* Sets the font to Verdana */
   font-family: Verdana, sans-serif;
-  /* Makes the text black */
+
+  /* Makes the paragraph text black */
   color: rgb(0, 0, 0);
+
   /* Sets the text size */
   font-size: 20px;
 }
 
-/* ========================================= SPINNING EGG ========================================= */
+
+/* =========================================
+   SPINNING EGG
+   ========================================= */
+
 /* Styles the spinning egg image */
 .spinning-egg {
   /* Makes the image a block element */
   display: block;
+
   /* Sets the image width */
   width: 800px;
-  /* Centers the image */
+
+  /* Adds space around the image and centers it */
   margin: 50px auto;
-  /* Spins the egg continuously */
+
+  /* Makes the egg spin continuously */
   animation: spin 0.0001s linear infinite;
 }
 
-/* ========================================= WHEEZER ========================================= */
+
+/* =========================================
+   LAMBORGHINIE
+   ========================================= */
+
+/* Styles the LamborghiniE image */
+.lamborghiniE {
+  /* Positions the image relative to its container */
+  position: absolute;
+
+  /* Sets the image width */
+  width: 400px;
+
+  /* Sets the image height */
+  height: 250px;
+
+  /* Starts the image in the top-left corner */
+  top: 0;
+  left: 0;
+
+  /* Makes the background transparent */
+  background-color: transparent;
+
+  /* Makes LamborghiniE spin continuously */
+  animation: spin 2s linear infinite;
+}
+
+
+/* =========================================
+   WHEEZER
+   ========================================= */
+
 /* Styles the Wheezer image */
 .wheezer {
   /* Makes the image a block element */
   display: block;
+
   /* Sets the image width */
   width: 800px;
-  /* Centers the image */
+
+  /* Adds space around the image and centers it */
   margin: 50px auto;
-  /* Spins Wheezer continuously */
+
+  /* Makes Wheezer spin continuously */
   animation: spin 2s linear infinite;
 }
 
-/* ========================================= SPIN ANIMATION ========================================= */
-/* Creates the spinning animation */
+
+/* =========================================
+   SPIN ANIMATION
+   ========================================= */
+
+/* Creates the animation used to spin the images */
 @keyframes spin {
 
-  /* Starting position */
+  /* The starting position of the animation */
   from {
     transform: rotate(0deg);
   }
 
-  /* Ending position */
+  /* The ending position of the animation */
   to {
     transform: rotate(360deg);
   }
 }
 
-/* ========================================= MOVING IMAGE CONTAINER ========================================= */
-/* Container for moving images */
+
+/* =========================================
+   MOVING IMAGE CONTAINER
+   ========================================= */
+
+/* Styles the container that holds the moving image */
 .container {
-  /* Allows images inside to be positioned */
+  /* Allows elements inside to be positioned relative to the container */
   position: relative;
-  /* Makes the container the full screen width */
+
+  /* Makes the container the full width of the screen */
   width: 100vw;
-  /* Makes the container the full screen height */
+
+  /* Makes the container the full height of the screen */
   height: 100vh;
-  /* Hides anything outside the container */
+
+  /* Hides anything that moves outside the container */
   overflow: hidden;
 }
 
-/* ========================================= MOVING IMAGE ========================================= */
+
+/* =========================================
+   MOVING IMAGE
+   ========================================= */
+
 /* Styles the moving image */
 #moving-image {
   /* Positions the image relative to its container */
   position: absolute;
-  /* Sets the image size */
+
+  /* Sets the width of the image */
   width: 100px;
+
+  /* Sets the height of the image */
   height: 100px;
+
   /* Starts the image in the top-left corner */
   top: 0;
   left: 0;
-  /* Smoothly animates movement */
+
+  /* Makes the image movement smooth */
   transition: top 1s ease-in-out, left 1s ease-in-out;
+}
+
+
+/* =========================================
+   RUNAWAY BUTTON
+   ========================================= */
+
+/* Styles the button that moves away from the mouse */
+#runawayButton {
+  /* Keeps the button fixed in the same position relative to the screen */
+  position: fixed;
+
+  /* Sets the starting horizontal position */
+  left: 50%;
+
+  /* Sets the starting vertical position */
+  top: 50%;
+
+  /* Moves the button back by half of its own width and height
+     so it is centred correctly */
+  transform: translate(-50%, -50%);
+
+  /* Adds space inside the button */
+  padding: 15px 30px;
+
+  /* Sets the size of the button text */
+  font-size: 20px;
+
+  /* Makes the button text bold */
+  font-weight: bold;
+
+  /* Makes the button background pink */
+  background-color: hotpink;
+
+  /* Makes the button text white */
+  color: white;
+
+  /* Removes the browser's default button border */
+  border: none;
+
+  /* Rounds the corners of the button */
+  border-radius: 15px;
+
+  /* Changes the mouse pointer to a hand */
+  cursor: pointer;
+
+  /* Makes sure the button appears above other elements */
+  z-index: 9999;
+
+  /* Makes the button's movement smooth */
+  transition: left 0.2s ease, top 0.2s ease;
+}
+
+
+/* Changes the button's appearance when the mouse is over it */
+#runawayButton:hover {
+  /* Makes the button slightly larger */
+  transform: translate(-50%, -50%) scale(1.1);
+
+  /* Changes the background colour to red */
+  background-color: red;
+}
+
+/* =========================================
+   LamborghiniE
+   ========================================= */
+
+
+
+
+/* =========================================
+   SPIN ANIMATION
+   ========================================= */
+
+/* Creates the animation used to spin the images */
+@keyframes spin {
+
+  /* The starting position of the animation */
+  from {
+    transform: rotate(0deg);
+  }
+
+  /* The ending position of the animation */
+  to {
+    transform: rotate(360deg);
+  }
 }

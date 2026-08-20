@@ -2,19 +2,255 @@
 <html lang="en">
 
 <head>
+    <!-- Sets the character encoding so the page can display text correctly -->
     <meta charset="UTF-8">
+
+    <!-- Makes the website scale properly on phones, tablets, and computers -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spinning Room</title> <!-- Connects this page to the CSS stylesheet -->
+
+    <!-- The title that appears in the browser tab -->
+    <title>Spinning Room</title>
+
+    <!-- Connects this HTML file to the external CSS stylesheet -->
     <link rel="stylesheet" href="jordan.css">
 </head>
 
-<body> <!-- Main page heading -->
+<body>
+
+    <!-- ==============================
+         PAGE HEADER
+         ============================== -->
+
     <header>
+
+        <!-- Main heading of the webpage -->
         <h1>Super-Happy Fun Room</h1>
+
+        <!-- Short introduction underneath the heading -->
         <p>Welcome to the spinning room!</p>
-    </header> <!-- Main content -->
-    <main> <!-- Spinning egg --> <img src="images/Spinegg.jpg" alt="A spinning egg" class="spinning-egg">
-        <!-- Wheezer --> <img src="images/Wheezer.jpg" alt="Wheezer" class="wheezer"> </main>
+
+    </header>
+
+
+    <main>
+
+        <!-- ==============================
+             SPINNING EGG
+             ============================== -->
+
+        <!--
+            Displays the spinning egg image.
+            The "spinning-egg" class is used by CSS
+            to make the image spin.
+        -->
+        <img 
+            src="images/Spinegg.jpg" 
+            alt="A spinning egg" 
+            class="spinning-egg"
+        >
+
+
+        <!-- ==============================
+             WHEEZER CONTAINER
+             ============================== -->
+
+        <!--
+            Container that holds the Wheezer image.
+            JavaScript uses this container to work out
+            where the image can safely move.
+        -->
+        <div class="container">
+
+            <!--
+                Displays the Wheezer image.
+                The "wheezer" class is used by CSS and
+                JavaScript to control its appearance
+                and movement.
+            -->
+            <img 
+                src="images/Wheezer.jpg" 
+                alt="Wheezer" 
+                class="wheezer"
+            >
+
+        </div>
+
+
+        <!-- ==============================
+             RUNAWAY BUTTON
+             ============================== -->
+
+        <!--
+            Button that moves away from the mouse.
+            JavaScript finds this button using its ID.
+        -->
+        <button id="runawayButton">Catch me!</button>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================
+           RUNAWAY BUTTON
+           ========================================= */
+
+
+        // Find the button using its ID and store it in a variable.
+        const button = document.getElementById("runawayButton");
+
+
+        // Listen for the mouse moving anywhere on the webpage.
+        document.addEventListener("mousemove", (event) => {
+
+            // Get the button's position and size on the screen.
+            const rect = button.getBoundingClientRect();
+
+            // Calculate the horizontal centre of the button.
+            const buttonX = rect.left + rect.width / 2;
+
+            // Calculate the vertical centre of the button.
+            const buttonY = rect.top + rect.height / 2;
+
+
+            // Calculate the distance between the mouse
+            // and the centre of the button.
+            const distance = Math.sqrt(
+                Math.pow(event.clientX - buttonX, 2) +
+                Math.pow(event.clientY - buttonY, 2)
+            );
+
+
+            // If the mouse gets within 50 pixels of the button,
+            // make the button run away.
+            if (distance < 50) {
+
+                // Calculate the furthest position the button
+                // can move horizontally without leaving the screen.
+                const maxX = window.innerWidth - button.offsetWidth;
+
+                // Calculate the furthest position the button
+                // can move vertically without leaving the screen.
+                const maxY = window.innerHeight - button.offsetHeight;
+
+
+                // Generate a random horizontal position.
+                const randomX = Math.random() * maxX;
+
+                // Generate a random vertical position.
+                const randomY = Math.random() * maxY;
+
+
+                // Move the button to the random horizontal position.
+                button.style.left = randomX + "px";
+
+                // Move the button to the random vertical position.
+                button.style.top = randomY + "px";
+            }
+        });
+
+
+        // Listen for the user clicking the button.
+        button.addEventListener("click", () => {
+
+            // Send the user to page1.html when the button is clicked.
+            window.location.href = "page1.html";
+
+        });
+
+
+        /* =========================================
+           RANDOM WHEEZER MOVEMENT
+           ========================================= */
+
+
+        // Find the Wheezer image using its CSS class.
+        const image = document.querySelector(".wheezer");
+
+        // Find the container that holds the Wheezer image.
+        const container = document.querySelector(".container");
+
+
+        // =========================================
+        // FUNCTION TO MOVE WHEEZER
+        // =========================================
+
+        // This function moves Wheezer to a random position
+        // inside the container.
+        function moveToRandomPlace() {
+
+            // Get the width of the container.
+            const containerWidth = container.clientWidth;
+
+            // Get the height of the container.
+            const containerHeight = container.clientHeight;
+
+
+            // Get the width of the Wheezer image.
+            const imageWidth = image.clientWidth;
+
+            // Get the height of the Wheezer image.
+            const imageHeight = image.clientHeight;
+
+
+            // Work out the maximum horizontal position
+            // where the image can fit inside the container.
+            //
+            // Math.max(0, ...) prevents the value from
+            // becoming negative if the image is too large.
+            const maxLeft = Math.max(0, containerWidth - imageWidth);
+
+            // Work out the maximum vertical position
+            // where the image can fit inside the container.
+            const maxTop = Math.max(0, containerHeight - imageHeight);
+
+
+            // Generate a random horizontal position.
+            // Math.floor() rounds the number down to a whole pixel.
+            const randomLeft = Math.floor(Math.random() * (maxLeft + 1));
+
+            // Generate a random vertical position.
+            const randomTop = Math.floor(Math.random() * (maxTop + 1));
+
+
+            // Move the Wheezer image horizontally.
+            image.style.left = randomLeft + "px";
+
+            // Move the Wheezer image vertically.
+            image.style.top = randomTop + "px";
+        }
+
+
+        // =========================================
+        // START WHEEZER MOVEMENT
+        // =========================================
+
+        // Wait until the Wheezer image has completely loaded.
+        image.addEventListener("load", () => {
+
+            // Move Wheezer to a random position immediately.
+            moveToRandomPlace();
+
+            // Move Wheezer to another random position every 2 seconds.
+            setInterval(moveToRandomPlace, 2000);
+
+        });
+
+
+        // =========================================
+        // WHEEZER ESCAPES FROM MOUSE
+        // =========================================
+
+        // Detect when the mouse pointer enters the Wheezer image.
+        image.addEventListener("mouseenter", () => {
+
+            // Immediately move Wheezer to another random position.
+            moveToRandomPlace();
+
+        });
+
+    </script>
+
 </body>
 
 </html>
