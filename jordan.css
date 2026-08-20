@@ -210,6 +210,19 @@ footer {
   text-align: center;
 }
 
+/* Holds the index page's images and the button that moves over them. */
+.home-stage {
+  position: relative;
+  width: min(1100px, 100%);
+  min-height: 680px;
+  margin: 24px auto 0;
+  padding: 1px 20px 20px;
+  overflow: hidden;
+  border: 3px solid rgb(25, 38, 58);
+  border-radius: 18px;
+  background-color: rgba(255, 255, 255, 0.32);
+}
+
 
 /* =========================================
    SPINNING EGG
@@ -221,10 +234,10 @@ footer {
   display: block;
 
   /* Sets the image width */
-  width: min(800px, 100%);
+  width: min(520px, 100%);
 
   /* Adds space around the image and centers it */
-  margin: 50px auto;
+  margin: 24px auto;
 
   /* Gives the image a consistent frame even when its asset is unavailable */
   border: 4px solid rgb(25, 38, 58);
@@ -358,8 +371,8 @@ footer {
 
 /* Styles the button that moves away from the mouse */
 #runawayButton {
-  /* Keeps the button fixed in the same position relative to the screen */
-  position: fixed;
+  /* Keeps the button inside the image stage instead of the whole viewport. */
+  position: absolute;
 
   /* Sets the starting horizontal position */
   left: 50%;
@@ -395,7 +408,7 @@ footer {
   /* Changes the mouse pointer to a hand */
   cursor: pointer;
 
-  /* Makes sure the button appears above other elements */
+  /* Makes sure the button appears above the images, but only inside the stage. */
   z-index: 9999;
 
   /* Makes the button's movement smooth */
@@ -443,6 +456,11 @@ footer {
   .content-frame {
     margin-top: 22px;
     padding: 12px;
+  }
+
+  .home-stage {
+    min-height: 560px;
+    padding: 1px 10px 10px;
   }
 
   section {

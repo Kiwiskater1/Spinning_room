@@ -44,6 +44,8 @@
 
 
     <main>
+        <!-- Keeps the moving button and spinning images inside the visual area. -->
+        <div class="home-stage">
 
         <!-- ==============================
              SPINNING EGG
@@ -54,11 +56,11 @@
             The "spinning-egg" class is used by CSS
             to make the image spin.
         -->
-        <img 
-            src="images/Spinegg.jpg" 
-            alt="A spinning egg" 
-            class="spinning-egg"
-        >
+            <img
+                src="images/Spinegg.jpg"
+                alt="A spinning egg"
+                class="spinning-egg"
+            >
 
 
         <!-- ==============================
@@ -70,7 +72,7 @@
             JavaScript uses this container to work out
             where the image can safely move.
         -->
-        <div class="container">
+            <div class="container">
 
             <!--
                 Displays the Wheezer image.
@@ -78,13 +80,13 @@
                 JavaScript to control its appearance
                 and movement.
             -->
-            <img 
-                src="images/Wheezer.jpg" 
-                alt="Wheezer" 
-                class="wheezer"
-            >
+                <img
+                    src="images/Wheezer.jpg"
+                    alt="Wheezer"
+                    class="wheezer"
+                >
 
-        </div>
+            </div>
 
 
         <!-- ==============================
@@ -95,7 +97,8 @@
             Button that moves away from the mouse.
             JavaScript finds this button using its ID.
         -->
-        <button id="runawayButton">Catch me!</button>
+            <button id="runawayButton">Catch me!</button>
+        </div>
 
     </main>
 
@@ -127,6 +130,7 @@
 
         // Find the button using its ID and store it in a variable.
         const button = document.getElementById("runawayButton");
+        const homeStage = document.querySelector(".home-stage");
 
 
         // Listen for the mouse moving anywhere on the webpage.
@@ -154,20 +158,20 @@
             // make the button run away.
             if (distance < 50) {
 
-                // Calculate the furthest position the button
-                // can move horizontally without leaving the screen.
-                const maxX = window.innerWidth - button.offsetWidth;
+                // Calculate the furthest position inside the image stage.
+                const minX = button.offsetWidth / 2;
+                const maxX = homeStage.clientWidth - minX;
 
-                // Calculate the furthest position the button
-                // can move vertically without leaving the screen.
-                const maxY = window.innerHeight - button.offsetHeight;
+                // Keep the button below the header and above the stage bottom.
+                const minY = button.offsetHeight / 2;
+                const maxY = homeStage.clientHeight - minY;
 
 
                 // Generate a random horizontal position.
-                const randomX = Math.random() * maxX;
+                const randomX = minX + Math.random() * (maxX - minX);
 
                 // Generate a random vertical position.
-                const randomY = Math.random() * maxY;
+                const randomY = minY + Math.random() * (maxY - minY);
 
 
                 // Move the button to the random horizontal position.
